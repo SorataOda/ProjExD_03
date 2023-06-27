@@ -169,7 +169,7 @@ def main():
         bomb.update(screen)
         if beam is not None:
             beam.update(screen)
-            if beam.colliderect(bomb):
+            if beam.rct.colliderect(bomb.rct):
                 beam = None
                 bomb = None
         pg.display.update()
