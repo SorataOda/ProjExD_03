@@ -153,7 +153,7 @@ class Beam:
         """
 
         self.vx, self.vy = bird.dire
-        self.img = pg.transform.rotozoom(pg.image.load(f"ex03/fig/beam.png"), math.degrees(math.atan2(-self.vy,self.vx)), 2.0)
+        self.img = pg.transform.rotozoom(pg.image.load(f"ex03/fig/beam.png"), math.degrees(math.atan2(-self.vy,self.vx)), 3.0)
         self.rct = self.img.get_rect()
         self.rct.centerx = (bird.rct.centerx +(bird.rct.width*(self.vx/5)))
         self.rct.centery = (bird.rct.centery +(bird.rct.height*(self.vy/5)))
