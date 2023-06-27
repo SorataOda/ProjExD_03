@@ -118,6 +118,7 @@ class Bomb:
         self.rct.move_ip(self.vx, self.vy)
         screen.blit(self.img, self.rct)
 
+
 class Explosion:
     """
     爆弾が爆発するエフェクトを出すクラス
@@ -196,21 +197,25 @@ def main():
                 pg.display.update()
                 time.sleep(1)
                 return
-        
+        #爆弾のリストをfor文で一つ管理する。
         for i, bomb in enumerate(bombs):
             if beam is not None:
                 if bomb.rct.colliderect(beam.rct):
+                    #爆発リストにクラスExplosionのインスタンスを入れる
                     explosions.append(Explosion(bomb,100))
                     bombs[i] = None
-                    beam = None
-                    bird.change_img(6, screen)
+                    beam = None#ビームと爆弾を消す
+                    bird.change_img(6, screen)#喜ぶこうかとん
                     pg.display.update()
             for i , explosion in enumerate(explosions):
                 if explosion is not None:
+                    #爆発がしている間、updateする
                     explosion.update(screen)
                 if explosion.get_life() <= 0:
+                    #get_lifeして、0よりも小さくなれば、爆弾の表示を消す
                     del explosions[i]
 
+        #各自updateを行う、keylistは打ち込んだキーを格納する。
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         bombs = [bomb for bomb in bombs if bomb is not None]
